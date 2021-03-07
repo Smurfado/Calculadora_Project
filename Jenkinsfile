@@ -35,7 +35,7 @@ pipeline {
         stage("Store artifact on Nexus"){
             steps{
                 withCredentials([usernameColonPassword(credentialsId: 'calculadora', variable: 'USERPASS')]) {
-                    sh 'curl -v -u "$USERPASS" --upload-file /var/jenkins_home/workspace/Calculadora_Project/"$JAR_NAME".jar http://calculadora:8081/repository/calculadora_raw/'
+                    sh 'curl -v -u "$USERPASS" --upload-file /var/jenkins_home/workspace/Calculadora_Project/"$JAR_NAME".jar http://localhost:8081/repository/calculadora_raw/'
                 }
             }
         }
@@ -46,7 +46,7 @@ pipeline {
             }
         }
 
-        stage("Push Image to Nexus"){
+      stage("Push Image to Nexus"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'calculadora', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 sh 'docker login -u "$USERNAME" -p "$PASSWORD" http://localhost:8082'
