@@ -12,14 +12,14 @@ pipeline {
         stage("SonarQube Analysis"){            
             steps{
                 script{    
-                    def scannerhome = tool 'Sonar-Scanner';       
-                    withSonarQubeEnv('sonarqube-server') {
+                    def scannerhome = tool 'calculadora';       
+                    withSonarQubeEnv('calculadora_config') {
                     sh """${scannerhome}/bin/sonar-scanner \
-                    -D sonar.login=1a7946d402e9e7f2668a7b5ead2d2fead9134cb1 \
-                    -D sonar.projectKey=calculator \
-                    -D sonar.java.binaries=/var/jenkins_home/workspace/calculator \
+                    -D sonar.login=b5e40ade590e7621b4d2743d665d29c7cf5c9f70 \
+                    -D sonar.projectKey=calculadora \
+                    -D sonar.java.binaries=/var/jenkins_home/workspace/Calculadora_Project \
                     -D sonar.java.source=11 \
-                    -D sonar.host.url=http://sonarqube:9000"""
+                    -D sonar.host.url=http://localhost:9000/"""
                     }
                 }
             }
